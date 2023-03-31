@@ -1,8 +1,7 @@
 import axios from "axios";
-import { useState } from "react";
-import "./App.css";
+import React, { useState } from "react";
 
-function App() {
+const Blogs = () => {
   const [title, setTitle] = useState<string>("");
   const [body, setBody] = useState<string>("");
 
@@ -15,6 +14,7 @@ function App() {
 
   return (
     <div className="container">
+      <h2 className="mt-2">Create a Blog Post</h2>
       <div className="mb-3">
         <label className="form-lable ">Title</label>
         <input
@@ -42,6 +42,6 @@ function App() {
       </button>
     </div>
   );
-}
+};
 
-export default App;
+export default Blogs;
