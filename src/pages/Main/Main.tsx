@@ -1,7 +1,7 @@
 import React from "react";
 
 const Main = () => {
-  return <div>asddasjfklasm!!!</div>;
+  return <div>home page 입니다.</div>;
 };
 
 export default Main;

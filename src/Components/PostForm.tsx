@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 
-const Blogs = () => {
+const PostForm = () => {
   const [title, setTitle] = useState<string>("");
   const [body, setBody] = useState<string>("");
 
@@ -13,7 +13,7 @@ const Blogs = () => {
   };
 
   return (
-    <div className="container">
+    <div>
       <h2 className="mt-2">Create a Blog Post</h2>
       <div className="mb-3">
         <label className="form-lable ">Title</label>
@@ -44,4 +44,4 @@ const Blogs = () => {
   );
 };
 
-export default Blogs;
+export default PostForm;
