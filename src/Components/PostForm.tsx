@@ -1,22 +1,38 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const PostForm = () => {
-  const [title, setTitle] = useState<string>("");
-  const [body, setBody] = useState<string>("");
+interface Post {
+  id: number;
+  title: string;
+  body: string;
+}
+
+const PostForm = ({ post }: { post?: Post }) => {
+  const [title, setTitle] = useState<string>(`${post ? post.title : ""}`);
+  const [body, setBody] = useState<string>(`${post ? post.body : ""}`);
+  const navigate = useNavigate();
 
   const onSubmit = () => {
     axios.post("http://localhost:8080/posts", {
       title,
       body,
     });
+    navigate("/blogs");
+  };
+
+  const Edit = () => {
+    axios.patch(`http://localhost:8080/posts/${post?.id}`, {
+      title,
+      body,
+    });
+    navigate("/blogs");
   };
 
   return (
     <div>
-      <h2 className="mt-2">Create a Blog Post</h2>
       <div className="mb-3">
-        <label className="form-lable ">Title</label>
+        <label className="form-lable ">제목</label>
         <input
           className="form-control"
           value={title}
@@ -27,7 +43,7 @@ const PostForm = () => {
         />
       </div>
       <div className="mb-3">
-        <label className="form-lable ">body</label>
+        <label className="form-lable ">내용</label>
         <textarea
           className="form-control"
           rows={15}
@@ -37,9 +53,15 @@ const PostForm = () => {
           }}
         />
       </div>
-      <button className="btn btn-primary" onClick={onSubmit}>
-        Post
-      </button>
+      {post ? (
+        <button className="btn btn-success" onClick={Edit}>
+          edit
+        </button>
+      ) : (
+        <button className="btn btn-primary" onClick={onSubmit}>
+          Post
+        </button>
+      )}
     </div>
   );
 };

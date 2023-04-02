@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Nav = () => {
   return (
-    <nav className="navbar bg-dark navbar-dark navbar-expand-lg">
+    <nav className="navbar bg-dark navbar-dark navbar-expand-lg mb-5">
       <div className="container">
         <Link className="navbar-brand" to="/">
           재로그
@@ -22,6 +22,9 @@ const Nav = () => {
             </li>
           </ul>
         </div>
+        <Link className="navbar-brand" to="/blogs/create">
+          글쓰기
+        </Link>
       </div>
     </nav>
   );
