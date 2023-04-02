@@ -53,15 +53,25 @@ const PostForm = ({ post }: { post?: Post }) => {
           }}
         />
       </div>
-      {post ? (
-        <button className="btn btn-success" onClick={Edit}>
-          edit
+      <div>
+        {post ? (
+          <button className="btn btn-success" onClick={Edit}>
+            edit
+          </button>
+        ) : (
+          <button className="btn btn-primary" onClick={onSubmit}>
+            Post
+          </button>
+        )}
+        <button
+          className="btn btn-danger m-2"
+          onClick={() => {
+            navigate("/blogs");
+          }}
+        >
+          close
         </button>
-      ) : (
-        <button className="btn btn-primary" onClick={onSubmit}>
-          Post
-        </button>
-      )}
+      </div>
     </div>
   );
 };

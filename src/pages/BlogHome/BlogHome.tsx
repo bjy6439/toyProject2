@@ -27,7 +27,7 @@ const BlogHome = () => {
   return (
     <>
       <h1>글 목록</h1>
-      {postList ? (
+      {postList.length > 0 ? (
         <div>
           {postList.map((post) => {
             return (
@@ -55,7 +55,7 @@ const BlogHome = () => {
           })}
         </div>
       ) : (
-        <h2>아무것도 없움</h2>
+        <h2>게시물이 없습니다.</h2>
       )}
     </>
   );
