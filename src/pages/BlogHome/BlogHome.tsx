@@ -11,23 +11,35 @@ interface Post {
 
 const BlogHome = () => {
   const [postList, setPostList] = useState<Post[]>([]);
+  const [loding, setLoding] = useState<Boolean>(true);
   const navigate = useNavigate();
 
   useEffect(() => {
     axios.get("http://localhost:8080/posts").then((res) => {
       setPostList(res.data);
+      setLoding(false);
     });
-  }, [postList]);
+  }, []);
 
   const PostDel = (id: number) => {
-    console.log(id);
-    axios.delete(`http://localhost:8080/posts/${id}`);
+    axios.delete(`http://localhost:8080/posts/${id}`).then(() => {
+      setPostList((prev) => prev.filter((post) => post.id !== id));
+    });
   };
 
-  return (
-    <>
-      <h1>글 목록</h1>
-      {postList.length > 0 ? (
+  const renderBlogList = () => {
+    if (loding) {
+      return (
+        <div className="d-flex justify-content-center">
+          <div className="spinner-border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      );
+    }
+
+    if (postList.length !== 0) {
+      return (
         <div>
           {postList.map((post) => {
             return (
@@ -54,9 +66,16 @@ const BlogHome = () => {
             );
           })}
         </div>
-      ) : (
-        <h2>게시물이 없습니다.</h2>
-      )}
+      );
+    } else {
+      return <h2>게시물이 없습니다.</h2>;
+    }
+  };
+
+  return (
+    <>
+      <h1>글 목록</h1>
+      {renderBlogList()}
     </>
   );
 };
