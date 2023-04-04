@@ -43,7 +43,7 @@ const BlogHome = () => {
         <div>
           {postList.map((post) => {
             return (
-              <Card key={post.id} title={post.title}>
+              <Card key={post.id} id={post.id} title={post.title}>
                 <>
                   <button
                     className="btn btn-success m-2 btn-sm"
