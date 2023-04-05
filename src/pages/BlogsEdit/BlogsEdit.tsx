@@ -11,14 +11,14 @@ interface Posts {
 
 const BlogsEdit = () => {
   const [post, setPost] = useState<Posts | null>(null);
-  const params = useParams<{ id: string }>();
+  const { id } = useParams();
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/posts/${params.id}`).then((res) => {
+    axios.get(`http://localhost:8080/posts/${id}`).then((res) => {
       console.log(res);
       setPost(res?.data);
     });
-  }, [params]);
+  }, [id]);
 
   if (!post) return null;
 

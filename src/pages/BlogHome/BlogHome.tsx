@@ -47,7 +47,8 @@ const BlogHome = () => {
                 <>
                   <button
                     className="btn btn-success m-2 btn-sm"
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.stopPropagation();
                       navigate(`/blogs/edit/${post.id}`);
                     }}
                   >
@@ -55,7 +56,8 @@ const BlogHome = () => {
                   </button>
                   <button
                     className="btn btn-danger m-2 btn-sm"
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.stopPropagation();
                       PostDel(post.id);
                     }}
                   >

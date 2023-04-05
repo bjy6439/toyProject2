@@ -16,9 +16,8 @@ const Card = ({
     <div className="card mt-3">
       <div className="card-body">
         <div
-          className="d-flex justify-content-between cursor-pointer"
+          className="d-flex justify-content-between cursor-pointer z-index-2"
           onClick={() => {
-            console.log(id);
             navigate(`/blogs/${id}`);
           }}
         >
