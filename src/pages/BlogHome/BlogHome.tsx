@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Card from "../../Components/Card";
 import { useNavigate } from "react-router-dom";
+import LodingSpiner from "../../Components/LodingSpiner";
 
 interface Post {
   id: number;
   title: string;
   body: string;
+  createdAt: number;
 }
 
 const BlogHome = () => {
@@ -29,13 +31,7 @@ const BlogHome = () => {
 
   const renderBlogList = () => {
     if (loding) {
-      return (
-        <div className="d-flex justify-content-center">
-          <div className="spinner-border" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </div>
-        </div>
-      );
+      return <LodingSpiner />;
     }
 
     if (postList.length !== 0) {
@@ -43,7 +39,12 @@ const BlogHome = () => {
         <div>
           {postList.map((post) => {
             return (
-              <Card key={post.id} id={post.id} title={post.title}>
+              <Card
+                key={post.id}
+                id={post.id}
+                title={post.title}
+                createdAt={post.createdAt}
+              >
                 <>
                   <button
                     className="btn btn-success m-2 btn-sm"

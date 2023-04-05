@@ -5,11 +5,16 @@ const Card = ({
   title,
   id,
   children,
+  createdAt,
 }: {
   title: string;
   id: number;
   children: React.ReactNode;
+  createdAt: number;
 }) => {
+  const getTime = (timestamp: number) => {
+    return new Date(timestamp).toLocaleString();
+  };
   const navigate = useNavigate();
 
   return (
@@ -21,7 +26,11 @@ const Card = ({
             navigate(`/blogs/${id}`);
           }}
         >
-          <div>{title}</div>
+          <div>
+            <h3>{title}</h3>
+            <small className="text-muted">{getTime(createdAt)}</small>
+          </div>
+
           <div>{children && <div>{children}</div>}</div>
         </div>
       </div>
