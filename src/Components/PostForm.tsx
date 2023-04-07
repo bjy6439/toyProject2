@@ -70,7 +70,7 @@ const PostForm = ({ post }: { post?: Post }) => {
             navigate("/blogs");
           }}
         >
-          close
+          cancle
         </button>
       </div>
     </div>

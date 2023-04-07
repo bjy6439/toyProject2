@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import LodingSpiner from "../../Components/LodingSpiner";
 
 interface Posts {
@@ -14,6 +14,7 @@ const PostPage = () => {
   const [post, setPost] = useState<Posts | null>(null);
   const [loding, setLoding] = useState<Boolean>(true);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const getTime = (time: number) => {
     return new Date(time).toLocaleString();
@@ -33,8 +34,21 @@ const PostPage = () => {
       ) : (
         <div>
           <div>
-            <h1 className="boder-bottom-1">{post?.title}</h1>
+            <div className="d-flex">
+              <h1 className="flex-grow-1">{post?.title}</h1>
+              <div>
+                <button
+                  className="btn btn-success"
+                  onClick={() => {
+                    navigate(`/blogs/edit/${id}`);
+                  }}
+                >
+                  edit
+                </button>
+              </div>
+            </div>
             <small>{post?.createdAt && getTime(post.createdAt)}</small>
+            <hr />
             <h3>{post?.body}</h3>
           </div>
         </div>

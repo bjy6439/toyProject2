@@ -25,6 +25,7 @@ const BlogsEdit = () => {
   return (
     <>
       <h2>글 수정</h2>
+      <hr />
       <PostForm post={post} />
     </>
   );
