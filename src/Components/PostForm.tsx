@@ -8,9 +8,11 @@ interface Post {
   body: string;
 }
 
-const PostForm = ({ post }: { post?: Post }) => {
+const PostForm = ({ post, edits }: { post?: Post; edits?: Boolean }) => {
   const [title, setTitle] = useState<string>(`${post ? post.title : ""}`);
+  const [newTitle, setNewTitle] = useState<string>(`${post ? post.title : ""}`);
   const [body, setBody] = useState<string>(`${post ? post.body : ""}`);
+  const [newBody, setNewBody] = useState<string>(`${post ? post.body : ""}`);
   const navigate = useNavigate();
 
   const onSubmit = () => {
@@ -24,11 +26,17 @@ const PostForm = ({ post }: { post?: Post }) => {
 
   const Edit = () => {
     axios.patch(`http://localhost:8080/posts/${post?.id}`, {
-      title,
-      body,
+      newTitle,
+      newBody,
     });
     navigate("/blogs");
   };
+
+  const isEdit = () => {
+    return title !== newTitle || body !== newBody;
+  };
+
+  console.log(isEdit());
 
   return (
     <div>
@@ -36,9 +44,13 @@ const PostForm = ({ post }: { post?: Post }) => {
         <label className="form-lable ">제목</label>
         <input
           className="form-control"
-          value={title}
+          value={edits ? newTitle : title}
           onChange={(e) => {
-            setTitle(e.target.value);
+            if (edits) {
+              setNewTitle(e.target.value);
+            } else {
+              setTitle(e.target.value);
+            }
           }}
           type="text"
         />
@@ -50,13 +62,21 @@ const PostForm = ({ post }: { post?: Post }) => {
           rows={15}
           value={body}
           onChange={(e) => {
-            setBody(e.target.value);
+            if (edits) {
+              setBody(e.target.value);
+            } else {
+              setNewBody(e.target.value);
+            }
           }}
         />
       </div>
       <div>
         {post ? (
-          <button className="btn btn-success" onClick={Edit}>
+          <button
+            className="btn btn-success"
+            disabled={!isEdit()}
+            onClick={Edit}
+          >
             edit
           </button>
         ) : (

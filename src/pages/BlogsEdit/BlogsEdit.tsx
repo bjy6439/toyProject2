@@ -15,7 +15,6 @@ const BlogsEdit = () => {
 
   useEffect(() => {
     axios.get(`http://localhost:8080/posts/${id}`).then((res) => {
-      console.log(res);
       setPost(res?.data);
     });
   }, [id]);
@@ -26,7 +25,7 @@ const BlogsEdit = () => {
     <>
       <h2>글 수정</h2>
       <hr />
-      <PostForm post={post} />
+      <PostForm post={post} edits={true} />
     </>
   );
 };

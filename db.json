@@ -1,22 +1,18 @@
 {
   "posts": [
     {
-      "title": "12",
-      "body": "111",
-      "createdAt": 1680698994870,
-      "id": 6
+      "title": "i want go home!!",
+      "body": "13212123",
+      "createdAt": 1680848585401,
+      "id": 1,
+      "newTitle": "i want go home!!",
+      "newBody": "13212123"
     },
     {
-      "title": "ㅎㅎ 집가고싶다",
-      "body": "왤케 어렵누",
-      "createdAt": 1680700533098,
-      "id": 7
-    },
-    {
-      "title": "왤케 어렵냐 ",
-      "body": "ㅋㅋㅋㅋ하 재밌다\n",
-      "createdAt": 1680700676486,
-      "id": 8
+      "title": "today's work very hard",
+      "body": "im going to home",
+      "createdAt": 1680848619482,
+      "id": 2
     }
   ]
 }
