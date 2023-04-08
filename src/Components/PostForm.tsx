@@ -60,12 +60,12 @@ const PostForm = ({ post, edits }: { post?: Post; edits?: Boolean }) => {
         <textarea
           className="form-control"
           rows={15}
-          value={body}
+          value={edits ? newBody : body}
           onChange={(e) => {
             if (edits) {
-              setBody(e.target.value);
-            } else {
               setNewBody(e.target.value);
+            } else {
+              setBody(e.target.value);
             }
           }}
         />
