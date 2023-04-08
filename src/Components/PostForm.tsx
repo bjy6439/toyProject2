@@ -8,35 +8,44 @@ interface Post {
   body: string;
 }
 
-const PostForm = ({ post, edits }: { post?: Post; edits?: Boolean }) => {
+const PostForm = ({ post, edits }: { post?: Post; edits?: boolean }) => {
   const [title, setTitle] = useState<string>(`${post ? post.title : ""}`);
   const [newTitle, setNewTitle] = useState<string>(`${post ? post.title : ""}`);
   const [body, setBody] = useState<string>(`${post ? post.body : ""}`);
   const [newBody, setNewBody] = useState<string>(`${post ? post.body : ""}`);
+  const [publish, setPublish] = useState<boolean>(false);
   const navigate = useNavigate();
+
+  console.log(publish);
 
   const onSubmit = () => {
     axios.post("http://localhost:8080/posts", {
       title,
       body,
       createdAt: Date.now(),
+      publish,
     });
     navigate("/blogs");
   };
 
   const Edit = () => {
     axios.patch(`http://localhost:8080/posts/${post?.id}`, {
-      newTitle,
-      newBody,
+      title: newTitle,
+      body: newBody,
+      publish,
     });
-    navigate("/blogs");
+    navigate(`/blogs/${post?.id}`);
   };
 
   const isEdit = () => {
     return title !== newTitle || body !== newBody;
   };
 
-  console.log(isEdit());
+  const isPublish = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPublish(e.target.checked);
+  };
+
+  console.log(publish);
 
   return (
     <div>
@@ -71,6 +80,17 @@ const PostForm = ({ post, edits }: { post?: Post; edits?: Boolean }) => {
         />
       </div>
       <div>
+        <div className="form-check">
+          <input
+            className="form-check-input"
+            type="checkbox"
+            checked={publish}
+            onChange={(e) => {
+              isPublish(e);
+            }}
+          />
+          <label className="form-check-lable">private</label>
+        </div>
         {post ? (
           <button
             className="btn btn-success"

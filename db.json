@@ -2,11 +2,9 @@
   "posts": [
     {
       "title": "i want go home!!",
-      "body": "13212123",
+      "body": "바꿈 바꿔진당!",
       "createdAt": 1680848585401,
-      "id": 1,
-      "newTitle": "i want go home!!",
-      "newBody": "13212123"
+      "id": 1
     },
     {
       "title": "today's work very hard",
@@ -18,9 +16,20 @@
       "title": "asdasd",
       "body": "asdasd",
       "createdAt": 1680930372785,
-      "id": 3,
-      "newTitle": "asdasd11112312",
-      "newBody": "asdasd"
+      "id": 3
+    },
+    {
+      "title": "이제 private하면 됨",
+      "body": "가즈아",
+      "createdAt": 1680930698187,
+      "id": 4
+    },
+    {
+      "title": "123",
+      "body": "123",
+      "createdAt": 1680931735133,
+      "id": 5,
+      "publish": true
     }
   ]
 }

@@ -8,6 +8,7 @@ interface Posts {
   body: string;
   id: number;
   createdAt: number;
+  publish: boolean;
 }
 
 const PostPage = () => {
@@ -49,7 +50,7 @@ const PostPage = () => {
             </div>
             <small>{post?.createdAt && getTime(post.createdAt)}</small>
             <hr />
-            <h3>{post?.body}</h3>
+            {post?.publish ? <h1>비공개 입니다.</h1> : <h3>{post?.body}</h3>}
           </div>
         </div>
       )}
