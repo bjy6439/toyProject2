@@ -1,35 +1,18 @@
 {
   "posts": [
     {
-      "title": "i want go home!!",
-      "body": "바꿈 바꿔진당!",
-      "createdAt": 1680848585401,
-      "id": 1
-    },
-    {
-      "title": "today's work very hard",
-      "body": "im going to home",
-      "createdAt": 1680848619482,
-      "id": 2
-    },
-    {
-      "title": "asdasd",
-      "body": "asdasd",
-      "createdAt": 1680930372785,
-      "id": 3
-    },
-    {
-      "title": "이제 private하면 됨",
-      "body": "가즈아",
-      "createdAt": 1680930698187,
-      "id": 4
-    },
-    {
       "title": "123",
       "body": "123",
       "createdAt": 1680931735133,
       "id": 5,
       "publish": true
+    },
+    {
+      "title": "비공개글",
+      "body": "1231312",
+      "createdAt": 1681020924780,
+      "publish": true,
+      "id": 6
     }
   ]
 }

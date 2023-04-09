@@ -9,6 +9,7 @@ interface Post {
   title: string;
   body: string;
   createdAt: number;
+  publish: boolean;
 }
 
 const BlogHome = () => {
