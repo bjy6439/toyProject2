@@ -5,7 +5,7 @@
       "body": "123",
       "createdAt": 1680931735133,
       "id": 5,
-      "publish": true
+      "publish": false
     },
     {
       "title": "비공개글",

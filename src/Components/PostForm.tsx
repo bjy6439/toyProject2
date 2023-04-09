@@ -18,8 +18,6 @@ const PostForm = ({ post, edits }: { post?: Post; edits?: boolean }) => {
   const [newPublish, setNewPublish] = useState<boolean>(post?.publish ?? false);
   const navigate = useNavigate();
 
-  console.log();
-
   const onSubmit = () => {
     axios.post("http://localhost:8080/posts", {
       title,
@@ -89,7 +87,7 @@ const PostForm = ({ post, edits }: { post?: Post; edits?: boolean }) => {
             onChange={(e) => {
               isPublish(e);
             }}
-          />
+          ></input>
           <label className="form-check-lable">private</label>
         </div>
         {post ? (
