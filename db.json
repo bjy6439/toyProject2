@@ -13,6 +13,20 @@
       "createdAt": 1681020924780,
       "publish": true,
       "id": 6
+    },
+    {
+      "title": "비공개 글입니다아아아아~",
+      "body": "없어져주세욥!",
+      "createdAt": 1681026909080,
+      "publish": false,
+      "id": 7
+    },
+    {
+      "title": "123",
+      "body": "123",
+      "createdAt": 1681026974451,
+      "publish": false,
+      "id": 8
     }
   ]
 }

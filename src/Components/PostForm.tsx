@@ -42,7 +42,9 @@ const PostForm = ({ post, edits }: { post?: Post; edits?: boolean }) => {
   };
 
   const isPublish = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPublish(publish);
+    if (!edits) {
+      setPublish(e.target.checked);
+    }
     setNewPublish(e.target.checked);
   };
 
