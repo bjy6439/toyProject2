@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Card from "./Card";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import LodingSpiner from "./LodingSpiner";
 import PagiNation from "./PagiNation";
 
@@ -80,12 +80,12 @@ const BlogList = ({ admin }: { admin?: boolean }) => {
     if (postList.length !== 0) {
       return (
         <>
+          {!admin && (
+            <button className="btn btn-primary" onClick={renderPublish}>
+              {isPublish ? "비공개글 보이기" : "비공개글 숨기기"}
+            </button>
+          )}
           <div>
-            {!admin && (
-              <button className="btn btn-primary" onClick={renderPublish}>
-                {isPublish ? "비공개글 보이기" : "비공개글 숨기기"}
-              </button>
-            )}
             {postList.map((post) => {
               if (isPublish === true && post.publish === true) {
                 return null;

@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 const PagiNation = ({
   currentPage,
@@ -12,7 +11,7 @@ const PagiNation = ({
 }) => {
   console.log(currentPage, numberOfPages);
   return (
-    <nav aria-label="Page navigation example">
+    <nav className="fixed-bottom" aria-label="Page navigation example">
       <ul className="pagination justify-content-center">
         <li className="page-item">
           <button
@@ -23,7 +22,7 @@ const PagiNation = ({
               }
             }}
           >
-            Previous
+            Prev
           </button>
         </li>
         {Array(numberOfPages)
