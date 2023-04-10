@@ -14,8 +14,8 @@ const Router = () => {
       <div className="container">
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/blogs/:pages" element={<BlogHome />} />
-          <Route path="/admin/:pages" element={<AdminPage />} />
+          <Route path="/blogs" element={<BlogHome />} />
+          <Route path="/admin" element={<AdminPage />} />
           <Route path="/blogs/:id" element={<PostPage />} />
           <Route path="/blogs/create" element={<Blogs />} />
           <Route path="/blogs/edit/:id" element={<BlogsEdit />} />

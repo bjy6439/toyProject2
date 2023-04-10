@@ -1,39 +1,48 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const PagiNation = ({
   currentPage,
   numberOfPages,
+  render,
 }: {
-  currentPage: string;
+  currentPage: number;
   numberOfPages: number;
+  render: any;
 }) => {
-  const navigate = useNavigate();
+  console.log(currentPage, numberOfPages);
   return (
     <nav aria-label="Page navigation example">
       <ul className="pagination justify-content-center">
-        {/* <li className="page-item disabled">
-          <Link className="page-link" to="/">
+        <li className="page-item">
+          <button
+            className="page-link"
+            onClick={() => {
+              if (currentPage > 1) {
+                render(currentPage - 1);
+              }
+            }}
+          >
             Previous
-          </Link>
-        </li> */}
+          </button>
+        </li>
         {Array(numberOfPages)
           .fill(1)
           .map((item, idx) => {
             return item + idx;
           })
-          .map((pageNum, idx) => {
+          .map((pageNum: number) => {
             return (
               <li
-                key={idx}
+                key={pageNum}
                 className={`page-item ${
-                  currentPage === `${pageNum}` ? "active" : ""
+                  currentPage === pageNum ? "active" : ""
                 }`}
               >
                 <button
                   className="page-link"
                   onClick={() => {
-                    navigate(`${pageNum}`);
+                    render(pageNum);
                   }}
                 >
                   {pageNum}
@@ -41,11 +50,18 @@ const PagiNation = ({
               </li>
             );
           })}
-        {/* <li className={`page-item ${currentPage === "4" ? "active" : ""}`}>
-          <Link className="page-link" to="#">
+        <li className={`page-item `}>
+          <button
+            className="page-link"
+            onClick={() => {
+              if (numberOfPages > currentPage) {
+                render(currentPage + 1);
+              }
+            }}
+          >
             Next
-          </Link>
-        </li> */}
+          </button>
+        </li>
       </ul>
     </nav>
   );

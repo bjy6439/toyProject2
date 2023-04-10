@@ -14,32 +14,43 @@ interface Post {
 }
 
 const BlogList = ({ admin }: { admin?: boolean }) => {
+  const [totalPage, setTotalPage] = useState<Post[]>([]);
+  const [thisPageNum, setThisPage] = useState<number>(1);
   const [postList, setPostList] = useState<Post[]>([]);
   const [loding, setLoding] = useState<boolean>(true);
   const [isPublish, setIsPublish] = useState<boolean>(false);
   const navigate = useNavigate();
-  const { pages } = useParams();
+
+  const pageNum = Math.ceil(totalPage.length / 5);
+
+  const render = (page: number) => {
+    setThisPage(page);
+    let params: object = {
+      _page: page,
+      _limit: 5,
+      _sort: "id",
+      _order: "desc",
+    };
+    if (isPublish) {
+      params = { ...params, publish: false };
+    }
+    axios
+      .get(`http://localhost:8080/posts`, {
+        params: params,
+      })
+      .then((res) => {
+        setPostList(res.data);
+        setLoding(false);
+      });
+
+    axios
+      .get(`http://localhost:8080/posts`)
+      .then((res) => setTotalPage(res.data));
+  };
 
   useEffect(
-    (page = 0) => {
-      let params: object = {
-        _page: page,
-        _limit: 5,
-        _sort: "id",
-        _order: "desc",
-      };
-      if (isPublish) {
-        params = { ...params, publish: false };
-      }
-
-      axios
-        .get(`http://localhost:8080/posts`, {
-          params: params,
-        })
-        .then((res) => {
-          setPostList(res.data);
-          setLoding(false);
-        });
+    (page = 1) => {
+      render(page);
     },
     [isPublish]
   );
@@ -107,8 +118,9 @@ const BlogList = ({ admin }: { admin?: boolean }) => {
             })}
           </div>
           <PagiNation
-            currentPage={pages ?? "1"}
-            numberOfPages={postList.length}
+            currentPage={thisPageNum}
+            numberOfPages={pageNum}
+            render={render}
           />
         </>
       );
