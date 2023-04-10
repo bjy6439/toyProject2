@@ -7,9 +7,9 @@ const Card = ({
   children,
   createdAt,
 }: {
-  title: string;
-  id: number;
-  children: React.ReactNode;
+  title?: string;
+  id?: number;
+  children?: React.ReactNode;
   createdAt: number;
 }) => {
   const getTime = (timestamp: number) => {

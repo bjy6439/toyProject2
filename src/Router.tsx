@@ -5,6 +5,7 @@ import Main from "./pages/Main/Main";
 import BlogsEdit from "./pages/BlogsEdit/BlogsEdit";
 import Blogs from "./pages/BlogsCreate/BlogsCreate";
 import PostPage from "./pages/PostPage/PostPage";
+import AdminPage from "./pages/AdminPage/AdminPage";
 
 const Router = () => {
   return (
@@ -14,6 +15,7 @@ const Router = () => {
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/blogs" element={<BlogHome />} />
+          <Route path="/admin" element={<AdminPage />} />
           <Route path="/blogs/:id" element={<PostPage />} />
           <Route path="/blogs/create" element={<Blogs />} />
           <Route path="/blogs/edit/:id" element={<BlogsEdit />} />
