@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Card from "./Card";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import LodingSpiner from "./LodingSpiner";
 import PagiNation from "./PagiNation";
 
@@ -18,9 +18,10 @@ const BlogList = ({ admin }: { admin?: boolean }) => {
   const [loding, setLoding] = useState<boolean>(true);
   const [isPublish, setIsPublish] = useState<boolean>(false);
   const navigate = useNavigate();
+  const { pages } = useParams();
 
   useEffect(
-    (page = 1) => {
+    (page = 0) => {
       let params: object = {
         _page: page,
         _limit: 5,
@@ -105,7 +106,10 @@ const BlogList = ({ admin }: { admin?: boolean }) => {
               );
             })}
           </div>
-          <PagiNation />
+          <PagiNation
+            currentPage={pages ?? "1"}
+            numberOfPages={postList.length}
+          />
         </>
       );
     } else {
