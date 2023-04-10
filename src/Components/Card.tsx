@@ -20,16 +20,16 @@ const Card = ({
   const navigate = useNavigate();
 
   return (
-    <div className="card mt-3">
-      <div className="card-body">
+    <div className="card mt-3 ">
+      <div className="card-body p-2 ">
         <div
-          className="d-flex justify-content-between cursor-pointer z-index-2"
+          className="d-flex justify-content-between z-index-2"
           onClick={() => {
             navigate(`/blogs/${id}`);
           }}
         >
           <div>
-            <h3>{title}</h3>
+            <h4>{title}</h4>
             <small className="text-muted">{getTime(createdAt)}</small>
             {publish && <small> 비공개</small>}
           </div>

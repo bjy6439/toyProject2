@@ -3,6 +3,8 @@ import axios from "axios";
 import Card from "./Card";
 import { useNavigate } from "react-router-dom";
 import LodingSpiner from "./LodingSpiner";
+import PagiNation from "./PagiNation";
+import { idText } from "typescript";
 
 interface Post {
   id: number;
@@ -18,12 +20,31 @@ const BlogList = ({ admin }: { admin?: boolean }) => {
   const [isPublish, setIsPublish] = useState<boolean>(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    axios.get("http://localhost:8080/posts").then((res) => {
-      setPostList(res.data);
-      setLoding(false);
-    });
-  }, []);
+  useEffect(
+    (page = 1) => {
+      axios
+        .get(`http://localhost:8080/posts`, {
+          params: {
+            _page: page,
+            _limit: 5,
+            _sort: "id",
+            _order: "desc",
+          },
+        })
+        .then((res) => {
+          if (isPublish) {
+            setPostList(
+              res.data.filter((item: any) => {
+                return item.publish !== true;
+              })
+            );
+          }
+          setPostList(res.data);
+          setLoding(false);
+        });
+    },
+    [isPublish]
+  );
 
   const PostDel = (id: number) => {
     axios.delete(`http://localhost:8080/posts/${id}`).then(() => {
@@ -64,7 +85,7 @@ const BlogList = ({ admin }: { admin?: boolean }) => {
                   {admin && (
                     <>
                       <button
-                        className="btn btn-success m-2 btn-sm"
+                        className="btn btn-success m-2"
                         onClick={(e) => {
                           e.stopPropagation();
                           navigate(`/blogs/edit/${post.id}`);
@@ -73,7 +94,7 @@ const BlogList = ({ admin }: { admin?: boolean }) => {
                         edit
                       </button>
                       <button
-                        className="btn btn-danger m-2 btn-sm"
+                        className="btn btn-danger m-2"
                         onClick={(e) => {
                           e.stopPropagation();
                           PostDel(post.id);
@@ -87,6 +108,7 @@ const BlogList = ({ admin }: { admin?: boolean }) => {
               );
             })}
           </div>
+          <PagiNation />
         </>
       );
     } else {

@@ -3,7 +3,7 @@ import BlogList from "../../Components/BlogList";
 const AdminPage = () => {
   return (
     <>
-      <h1>Admin Page</h1>
+      <h1 className="py-3">Admin Page</h1>
       <BlogList admin={true} />
     </>
   );
