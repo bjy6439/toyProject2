@@ -13,6 +13,13 @@
       "createdAt": 1681099681841,
       "publish": false,
       "id": 9
+    },
+    {
+      "title": "비공개2",
+      "body": "비공개입니다.",
+      "createdAt": 1681103690122,
+      "publish": true,
+      "id": 10
     }
   ]
 }

@@ -20,6 +20,11 @@ const Nav = () => {
                 Blogs
               </Link>
             </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/admin">
+                Admin
+              </Link>
+            </li>
           </ul>
         </div>
         <Link className="navbar-brand" to="/blogs/create">

@@ -6,11 +6,13 @@ const Card = ({
   id,
   children,
   createdAt,
+  publish,
 }: {
   title?: string;
   id?: number;
   children?: React.ReactNode;
   createdAt: number;
+  publish?: boolean;
 }) => {
   const getTime = (timestamp: number) => {
     return new Date(timestamp).toLocaleString();
@@ -29,6 +31,7 @@ const Card = ({
           <div>
             <h3>{title}</h3>
             <small className="text-muted">{getTime(createdAt)}</small>
+            {publish && <small> 비공개</small>}
           </div>
 
           <div>{children && <div>{children}</div>}</div>

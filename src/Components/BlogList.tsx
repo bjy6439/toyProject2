@@ -44,9 +44,11 @@ const BlogList = ({ admin }: { admin?: boolean }) => {
       return (
         <>
           <div>
-            <button className="btn btn-primary" onClick={renderPublish}>
-              비공개글 숨기기
-            </button>
+            {!admin && (
+              <button className="btn btn-primary" onClick={renderPublish}>
+                {isPublish ? "비공개글 보이기" : "비공개글 숨기기"}
+              </button>
+            )}
             {postList.map((post) => {
               if (isPublish === true && post.publish === true) {
                 return null;
@@ -57,6 +59,7 @@ const BlogList = ({ admin }: { admin?: boolean }) => {
                   id={post.id}
                   title={post.title}
                   createdAt={post.createdAt}
+                  publish={post.publish}
                 >
                   {admin && (
                     <>
