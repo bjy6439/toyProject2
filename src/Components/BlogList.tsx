@@ -4,7 +4,6 @@ import Card from "./Card";
 import { useNavigate } from "react-router-dom";
 import LodingSpiner from "./LodingSpiner";
 import PagiNation from "./PagiNation";
-import { idText } from "typescript";
 
 interface Post {
   id: number;
@@ -22,23 +21,21 @@ const BlogList = ({ admin }: { admin?: boolean }) => {
 
   useEffect(
     (page = 1) => {
+      let params: object = {
+        _page: page,
+        _limit: 5,
+        _sort: "id",
+        _order: "desc",
+      };
+      if (isPublish) {
+        params = { ...params, publish: false };
+      }
+
       axios
         .get(`http://localhost:8080/posts`, {
-          params: {
-            _page: page,
-            _limit: 5,
-            _sort: "id",
-            _order: "desc",
-          },
+          params: params,
         })
         .then((res) => {
-          if (isPublish) {
-            setPostList(
-              res.data.filter((item: any) => {
-                return item.publish !== true;
-              })
-            );
-          }
           setPostList(res.data);
           setLoding(false);
         });
