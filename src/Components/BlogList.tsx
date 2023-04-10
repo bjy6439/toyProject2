@@ -25,15 +25,20 @@ const BlogList = ({ admin }: { admin?: boolean }) => {
 
   const render = (page: number) => {
     setThisPage(page);
+
     let params: object = {
       _page: page,
       _limit: 5,
       _sort: "id",
       _order: "desc",
     };
+    let pageParams: object = { _sort: "id", _order: "desc" };
+
     if (isPublish) {
       params = { ...params, publish: false };
+      pageParams = { ...pageParams, publish: false };
     }
+
     axios
       .get(`http://localhost:8080/posts`, {
         params: params,
@@ -44,7 +49,9 @@ const BlogList = ({ admin }: { admin?: boolean }) => {
       });
 
     axios
-      .get(`http://localhost:8080/posts`)
+      .get(`http://localhost:8080/posts`, {
+        params: pageParams,
+      })
       .then((res) => setTotalPage(res.data));
   };
 
