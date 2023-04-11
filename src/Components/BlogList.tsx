@@ -20,15 +20,15 @@ const BlogList = ({ admin }: { admin?: boolean }) => {
   const [loding, setLoding] = useState<boolean>(true);
   const [isPublish, setIsPublish] = useState<boolean>(false);
   const navigate = useNavigate();
-
-  const pageNum = Math.ceil(totalPage / 5);
+  const limit = 5;
+  const pageNum = Math.ceil(totalPage / limit);
 
   const render = (page: number) => {
     setThisPage(page);
 
     let params: object = {
       _page: page,
-      _limit: 5,
+      _limit: limit,
       _sort: "id",
       _order: "desc",
     };
@@ -53,7 +53,7 @@ const BlogList = ({ admin }: { admin?: boolean }) => {
       render(page);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [isPublish]
+    [isPublish, postList]
   );
 
   const PostDel = (id: number) => {
@@ -118,11 +118,13 @@ const BlogList = ({ admin }: { admin?: boolean }) => {
               );
             })}
           </div>
-          <PagiNation
-            currentPage={thisPageNum}
-            numberOfPages={pageNum}
-            render={render}
-          />
+          {pageNum > 1 && (
+            <PagiNation
+              currentPage={thisPageNum}
+              numberOfPages={pageNum}
+              render={render}
+            />
+          )}
         </>
       );
     } else {
