@@ -20,7 +20,7 @@ const Card = ({
   const navigate = useNavigate();
 
   return (
-    <div className="card mt-3 ">
+    <div className="card mt-3 cursor-pointer">
       <div className="card-body p-2 ">
         <div
           className="d-flex justify-content-between z-index-2"

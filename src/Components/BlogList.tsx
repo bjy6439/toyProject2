@@ -14,14 +14,14 @@ interface Post {
 }
 
 const BlogList = ({ admin }: { admin?: boolean }) => {
-  const [totalPage, setTotalPage] = useState<Post[]>([]);
+  const [totalPage, setTotalPage] = useState<number>(0);
   const [thisPageNum, setThisPage] = useState<number>(1);
   const [postList, setPostList] = useState<Post[]>([]);
   const [loding, setLoding] = useState<boolean>(true);
   const [isPublish, setIsPublish] = useState<boolean>(false);
   const navigate = useNavigate();
 
-  const pageNum = Math.ceil(totalPage.length / 5);
+  const pageNum = Math.ceil(totalPage / 5);
 
   const render = (page: number) => {
     setThisPage(page);
@@ -32,11 +32,9 @@ const BlogList = ({ admin }: { admin?: boolean }) => {
       _sort: "id",
       _order: "desc",
     };
-    let pageParams: object = { _sort: "id", _order: "desc" };
 
     if (isPublish) {
       params = { ...params, publish: false };
-      pageParams = { ...pageParams, publish: false };
     }
 
     axios
@@ -44,21 +42,17 @@ const BlogList = ({ admin }: { admin?: boolean }) => {
         params: params,
       })
       .then((res) => {
+        setTotalPage(res.headers["x-total-count"]);
         setPostList(res.data);
         setLoding(false);
       });
-
-    axios
-      .get(`http://localhost:8080/posts`, {
-        params: pageParams,
-      })
-      .then((res) => setTotalPage(res.data));
   };
 
   useEffect(
     (page = 1) => {
       render(page);
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [isPublish]
   );
 

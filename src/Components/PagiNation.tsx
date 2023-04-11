@@ -9,7 +9,6 @@ const PagiNation = ({
   numberOfPages: number;
   render: any;
 }) => {
-  console.log(currentPage, numberOfPages);
   return (
     <nav className="fixed-bottom" aria-label="Page navigation example">
       <ul className="pagination justify-content-center">
