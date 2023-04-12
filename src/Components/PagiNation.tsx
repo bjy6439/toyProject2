@@ -1,8 +1,8 @@
 import React from "react";
 
 const PagiNation = ({
-  currentPage,
-  numberOfPages,
+  currentPage, // 현재 페이지
+  numberOfPages, // 총 페이지 갯수
   render,
 }: {
   currentPage: number;
@@ -12,6 +12,18 @@ const PagiNation = ({
   return (
     <nav className="fixed-bottom" aria-label="Page navigation example">
       <ul className="pagination justify-content-center">
+        <li className="page-item">
+          <button
+            className="page-link"
+            onClick={() => {
+              if (currentPage > 1) {
+                render(currentPage - 1);
+              }
+            }}
+          >
+            PrevPage
+          </button>
+        </li>
         <li className="page-item">
           <button
             className="page-link"
@@ -41,6 +53,7 @@ const PagiNation = ({
                   className="page-link"
                   onClick={() => {
                     render(pageNum);
+                    console.log(1);
                   }}
                 >
                   {pageNum}
@@ -58,6 +71,18 @@ const PagiNation = ({
             }}
           >
             Next
+          </button>
+        </li>
+        <li className={`page-item `}>
+          <button
+            className="page-link"
+            onClick={() => {
+              if (numberOfPages > currentPage) {
+                render(currentPage + 1);
+              }
+            }}
+          >
+            NextPage
           </button>
         </li>
       </ul>

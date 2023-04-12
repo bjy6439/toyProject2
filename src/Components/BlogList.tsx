@@ -48,12 +48,14 @@ const BlogList = ({ admin }: { admin?: boolean }) => {
       });
   };
 
+  console.log(postList);
+
   useEffect(
     (page = 1) => {
       render(page);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [isPublish, postList]
+    [isPublish]
   );
 
   const PostDel = (id: number) => {
